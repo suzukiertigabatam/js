@@ -44,7 +44,7 @@ function scrollFunction() {
     if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
         document.getElementById("navbar").style.top = "0";
     } else {
-        document.getElementById("navbar").style.top = "50px";
+        document.getElementById("navbar").style.top = "-50px";
     }
 }
 
@@ -71,6 +71,18 @@ $(document).ready(function(){
     } // End if
   });
   
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slider");
+        }
+    });
+  });
+})
+
 $(function(){
     $('body').on('click', '.navbar-toggler', function(e) {
         e.preventDefault();
@@ -92,3 +104,5 @@ function openProduct (type = 'automobile') {
     $('#productMenu').fadeIn();
     $('#productMenu').load(base_url+'product/menu/'+type);
 }
+
+$('#myModal').modal('show')
